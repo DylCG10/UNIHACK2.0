@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src = "./script.js"></script> -->
+    <h1>MOIV</h1>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io.connect("http://localhost:3000");
+
+        socket.on('connect', function() {
+            socket.emit('adduser', prompt("Whats your name? "))
+        })
+
+        socket.on('join-room', function(username, data) {
+            console.log("join room");
+            $("#conversation").append(username + ' ' + data)
+        })
+
+        socket.on('update-rooms', function (rooms, current_room) {
+            $('#rooms').empty();
+            $.each(rooms, function (key, value) {
+                if (value === current_room){
+
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>
